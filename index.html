@@ -600,6 +600,25 @@
       }
       .reveal { opacity: 1; transform: none; }
     }
+
+    @media print {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      body { background: #fff; color: #111; font-size: 11pt; }
+      nav, .hero__actions, footer, .btn-print { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      section { page-break-inside: avoid; padding: 1rem 0; }
+      .hero { background: #fff !important; color: #111 !important; padding: 1rem 0 0.5rem; }
+      .hero__title { color: #111 !important; font-size: 22pt; }
+      .hero__subtitle { color: #555 !important; }
+      .hero__meta span { color: #555 !important; }
+      .hero__meta span::before { color: #999 !important; }
+      .section__title, .section__subtitle { color: #111 !important; }
+      .card, .logro-card, .logro-detail, .skills-group { box-shadow: none !important; border: 1px solid #ddd !important; }
+      .skill-bar-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .extra-badge { border: 1px solid #ccc !important; background: #f9f9f9 !important; color: #333 !important; }
+      a { color: #111 !important; text-decoration: none; }
+      .container { max-width: 100% !important; padding: 0 1rem !important; }
+    }
   </style>
 </head>
 <body>
@@ -643,10 +662,10 @@
             </div>
             <div class="hero__actions">
               <a class="button button--primary" href="http://wa.me/34644429910?text=Hola%20Mar%C3%ADa,%20me%20interesa%20saber%20m%C3%A1s%20sobre%20tus%20servicios" target="_blank">Contactar por WhatsApp</a>
-              <a class="button button--secondary" href="cv-maria-romero.pdf" download>
+              <button class="button button--secondary btn-print" onclick="window.print()">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 Descargar CV
-              </a>
+              </button>
             </div>
           </div>
         </section>
