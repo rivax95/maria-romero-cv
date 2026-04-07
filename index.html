@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maria Romero | Tecnica en Estetica</title>
+  <meta name="description" content="Web profesional de Maria Romero, Tecnica en Estetica especializada en tratamientos faciales, corporales y atencion personalizada en cabina.">
+  <style>
+    :root {
+      --color-primary: #b98985; /* EDITAR */
+      --color-secondary: #f5ebe3; /* EDITAR */
+      --color-accent: #d9c0a2; /* EDITAR */
+      --color-surface: #fffaf6;
+      --color-surface-strong: #f1e4db;
+      --color-text: #483a35;
+      --color-text-soft: #7d6a63;
+      --color-white: #ffffff;
+      --color-shadow: rgba(92, 63, 55, 0.12);
+      --gradient-hero: linear-gradient(135deg, rgba(245, 235, 227, 0.98), rgba(255, 250, 246, 0.92));
+      --font-main: "Segoe UI", "Helvetica Neue", Arial, sans-serif; /* EDITAR */
+      --font-display: Georgia, "Times New Roman", serif; /* EDITAR */
+      --container: 1120px;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --shadow-card: 0 20px 45px var(--color-shadow);
+      --shadow-soft: 0 10px 24px rgba(92, 63, 55, 0.08);
+      --transition: 220ms ease;
+      scroll-behavior: smooth;
+    }
+
+    * { box-sizing: border-box; }
+    html:focus-within { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      color: var(--color-text);
+      background:
+        radial-gradient(circle at top left, rgba(217, 192, 162, 0.14), transparent 30%),
+        linear-gradient(180deg, #fffdfb 0%, #fff8f4 40%, #fdf4ee 100%);
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, a[role="button"] { font: inherit; }
+    .page-shell { overflow: clip; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(255, 250, 246, 0.82);
+      border-bottom: 1px solid rgba(185, 137, 133, 0.12);
+    }
+    .topbar__inner, .section {
+      width: min(calc(100% - 2rem), var(--container));
+      margin: 0 auto;
+    }
+    .topbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+    .brand {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav { display: none; gap: 1rem; font-size: 0.95rem; color: var(--color-text-soft); }
+    .nav a:hover, .nav a:focus-visible { color: var(--color-primary); }
+    .hero-wrap { padding: 1rem 0 3rem; }
+    .hero {
+      position: relative;
+      display: grid;
+      gap: 1.5rem;
+      align-items: center;
+      min-height: calc(100svh - 76px);
+      padding: 2rem 1.3rem;
+      border-radius: calc(var(--radius-lg) + 6px);
+      background: var(--gradient-hero);
+      box-shadow: var(--shadow-card);
+      isolation: isolate;
+    }
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      top: -50px;
+      right: -20px;
+      background: radial-gradient(circle, rgba(217, 192, 162, 0.34), transparent 70%);
+    }
+    .hero::after {
+      width: 260px;
+      height: 260px;
+      bottom: -60px;
+      left: -60px;
+      background: radial-gradient(circle, rgba(185, 137, 133, 0.18), transparent 70%);
+    }
+    .hero__visual { position: relative; max-width: 340px; margin: 0 auto; }
+    .hero__badge {
+      position: absolute;
+      right: -8px;
+      bottom: 18px;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.82rem;
+      color: var(--color-text-soft);
+    }
+    .hero__image-frame {
+      position: relative;
+      padding: 0.8rem;
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 246, 240, 0.88));
+      box-shadow: var(--shadow-card);
+    }
+    .hero__image-frame::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(185, 137, 133, 0.22);
+      border-radius: 24px;
+    }
+    .hero__image {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 24px;
+    }
+    .hero__content { display: grid; gap: 1rem; }
+    .hero__role {
+      margin: -0.35rem 0 0;
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      width: fit-content;
+      padding: 0.45rem 0.85rem;
+      border: 1px solid rgba(185, 137, 133, 0.25);
+      border-radius: 999px;
+      color: var(--color-text-soft);
+      background: rgba(255, 255, 255, 0.62);
+      font-size: 0.9rem;
+    }
+    h1, h2, h3 { margin: 0; line-height: 1.1; }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 7vw, 4.8rem);
+      letter-spacing: -0.04em;
+    }
+    .hero__subtitle {
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--color-text-soft);
+      max-width: 34rem;
+    }
+    .hero__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      color: var(--color-text-soft);
+      font-size: 0.95rem;
+    }
+    .hero__meta span {
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(185, 137, 133, 0.14);
+    }
+    .hero__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      align-items: stretch;
+      margin-top: 0.4rem;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 52px;
+      padding: 0.9rem 1.4rem;
+      border: 0;
+      border-radius: 999px;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+      cursor: pointer;
+    }
+    .button:hover, .button:focus-visible { transform: translateY(-2px); }
+    .button--primary {
+      background: linear-gradient(135deg, var(--color-primary), #cda5a2);
+      color: var(--color-white);
+      box-shadow: 0 16px 34px rgba(185, 137, 133, 0.28);
+    }
+    .button--secondary {
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--color-text);
+      border: 1px solid rgba(185, 137, 133, 0.18);
+    }
+    .section { padding: 4.5rem 0; }
+    .section__intro {
+      display: grid;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
+      max-width: 42rem;
+    }
+    .section__label {
+      font-size: 0.82rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    .section__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      letter-spacing: -0.03em;
+    }
+    .section__text { margin: 0; color: var(--color-text-soft); font-size: 1rem; }
+    .about-card, .contact-card, .education-list, .experience__timeline {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(185, 137, 133, 0.12);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(8px);
+    }
+    .about-card { padding: 1.7rem; border-radius: var(--radius-lg); }
+    .about-card p { margin: 0; font-size: 1.05rem; }
+    .services-grid, .portfolio-grid, .contact-grid { display: grid; gap: 1rem; }
+    .service-card {
+      padding: 1.3rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(245, 235, 227, 0.92));
+      border: 1px solid rgba(185, 137, 133, 0.14);
+      box-shadow: var(--shadow-soft);
+    }
+    .service-card__icon {
+      width: 3rem;
+      height: 3rem;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 0.9rem;
+      border-radius: 16px;
+      background: rgba(185, 137, 133, 0.12);
+      color: var(--color-primary);
+    }
+    .service-card__icon svg { width: 1.45rem; height: 1.45rem; }
+    .service-card h3 { margin-bottom: 0.4rem; font-size: 1.05rem; }
+    .service-card p { margin: 0; color: var(--color-text-soft); font-size: 0.95rem; }
+    .experience__timeline {
+      position: relative;
+      display: grid;
+      gap: 1.2rem;
+      padding: 1.4rem;
+      border-radius: var(--radius-lg);
+    }
+    .timeline-item { position: relative; padding-left: 1.7rem; }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 0.45rem;
+      left: 0;
+      width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--color-primary), #dcb6ab);
+      box-shadow: 0 0 0 6px rgba(185, 137, 133, 0.12);
+    }
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      top: 1.45rem;
+      left: 0.4rem;
+      width: 2px;
+      bottom: -1.5rem;
+      background: linear-gradient(180deg, rgba(185, 137, 133, 0.32), transparent);
+    }
+    .timeline-item:last-child::after { display: none; }
+    .timeline-item__header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 0.4rem;
+    }
+    .timeline-item__header h3 { font-size: 1.08rem; }
+    .timeline-item__company { color: var(--color-primary); font-weight: 600; }
+    .timeline-item__date { color: var(--color-text-soft); font-size: 0.92rem; }
+    .timeline-item p { margin: 0; color: var(--color-text-soft); }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      padding: 0;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      background: transparent;
+      box-shadow: var(--shadow-soft);
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      object-fit: cover;
+      transition: transform 300ms ease, filter 300ms ease;
+    }
+    .portfolio-card::after {
+      content: attr(data-caption);
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 1rem;
+      color: var(--color-white);
+      background: linear-gradient(180deg, transparent, rgba(40, 23, 19, 0.7));
+      font-weight: 500;
+    }
+    .portfolio-card:hover img, .portfolio-card:focus-visible img {
+      transform: scale(1.04);
+      filter: saturate(1.05);
+    }
+    .education-list { padding: 0.6rem 1.2rem; border-radius: var(--radius-lg); }
+    .education-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(185, 137, 133, 0.16);
+    }
+    .education-item:last-child { border-bottom: 0; }
+    .education-item__title { font-weight: 600; }
+    .education-item__center, .education-item__year {
+      color: var(--color-text-soft);
+      font-size: 0.95rem;
+    }
+    .contact-card { padding: 1.5rem; border-radius: var(--radius-lg); }
+    .contact-grid { margin-top: 1.5rem; }
+    .contact-item {
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(185, 137, 133, 0.12);
+    }
+    .contact-item span {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+    }
+    .footer {
+      padding: 0 0 2.5rem;
+      text-align: center;
+      color: var(--color-text-soft);
+      font-size: 0.92rem;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      background: rgba(42, 24, 20, 0.86);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition), visibility var(--transition);
+      z-index: 50;
+    }
+    .lightbox.is-open { opacity: 1; visibility: visible; }
+    .lightbox__dialog {
+      position: relative;
+      width: min(92vw, 880px);
+      padding: 0.8rem;
+      border-radius: 24px;
+      background: rgba(255, 250, 246, 0.98);
+      box-shadow: var(--shadow-card);
+    }
+    .lightbox__image {
+      width: 100%;
+      max-height: 78vh;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+    .lightbox__caption { margin: 0.9rem 0 0.2rem; color: var(--color-text-soft); text-align: center; }
+    .lightbox__close {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.7rem;
+      width: 2.8rem;
+      height: 2.8rem;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--color-text);
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+    }
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -100%;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      z-index: 100;
+    }
+    .skip-link:focus { top: 1rem; }
+    @media (min-width: 700px) {
+      .nav { display: flex; }
+      .hero {
+        grid-template-columns: minmax(280px, 380px) minmax(0, 1fr);
+        padding: 2.5rem;
+      }
+      .hero__actions, .contact-actions {
+        flex-direction: row;
+        align-items: center;
+      }
+      .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 980px) {
+      .section { padding: 5.5rem 0; }
+      .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .portfolio-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html:focus-within { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <div class="page-shell">
+    <header class="topbar" aria-label="Navegacion principal">
+      <div class="topbar__inner">
+        <a class="brand" href="#inicio">María Romero</a>
+        <nav class="nav">
+          <a href="#sobre-mi">Sobre mi</a>
+          <a href="#servicios">Especialidades</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#formacion">Formacion</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <div class="hero-wrap section">
+        <section class="hero reveal" id="inicio" aria-labelledby="hero-title">
+          <div class="hero__visual">
+            <div class="hero__image-frame">
+              <!-- // EDITAR: sustituir por la foto de perfil real -->
+              <img class="hero__image" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Foto de perfil profesional de Maria Romero">
+            </div>
+            <div class="hero__badge">Autonomía, versatilidad y fidelización de clientes</div>
+          </div>
+
+          <div class="hero__content">
+            <span class="eyebrow">Disponible para incorporacion inmediata</span>
+            <h1 id="hero-title">María Romero Jiménez</h1>
+            <p class="hero__role">Profesional de Estética, Peluquería y Bienestar</p>
+            <p class="hero__subtitle">Profesional versátil con experiencia gestionando gabinete propio. Especializada en tratamientos estéticos avanzados, peluquería, quiromasaje y micropigmentación. Orientada a excelencia en el trato y fidelización de clientes.</p>
+            <div class="hero__meta" aria-label="Datos principales">
+              <span>Sevilla, España</span>
+              <span>Más de 5 años gestionando negocio propio</span>
+              <span>Estética, Peluquería, Quiromasaje, Micropigmentación</span>
+            </div>
+            <div class="hero__actions">
+              <a class="button button--primary" href="http://wa.me/34644429910?text=Hola%20María,%20me%20interesa%20saber%20más%20sobre%20tus%20servicios" target="_blank">Contactar por WhatsApp</a>
+              <a class="button button--secondary" href="#contacto">Contactar</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="section reveal" id="sobre-mi" aria-labelledby="sobre-mi-title">
+        <div class="section__intro">
+          <span class="section__label">Sobre mi</span>
+          <h2 class="section__title" id="sobre-mi-title">Experiencia real gestionando un negocio propio y trabajo en equipo</h2>
+        </div>
+        <div class="about-card">
+          <p>Profesional del sector estético con amplia experiencia en peluquería, quiromasaje, micropigmentación y tratamientos avanzados. Durante 3 años he gestionado mi propio gabinete, desarrollando funciones técnicas, comerciales y organizativas. Altamente resolutiva, orientada a resultados y fidelización de clientes. Me caracterizo por mi capacidad de trabajar con autonomía en entornos exigentes, adaptabilidad y mentalidad proactiva.</p>
+        </div>
+      </section>
+
+      <section class="section reveal" id="servicios" aria-labelledby="servicios-title">
+        <div class="section__intro">
+          <span class="section__label">Especialidades</span>
+          <h2 class="section__title" id="servicios-title">Servicios que domino con seguridad y criterio estético</h2>
+          <p class="section__text">Especialista versátil con experiencia real en múltiples disciplinas estéticas y de bienestar.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3.8 0 7 3 7 6.8 0 6.1-7 11.2-7 11.2S5 15.9 5 9.8C5 6 8.2 3 12 3Z"></path><path d="M9.5 9.8c.6.8 1.4 1.2 2.5 1.2 1 0 1.9-.4 2.5-1.2"></path></svg>
+            </div>
+            <h3>Estética facial avanzada</h3>
+            <p>Tratamientos faciales, diagnóstico de piel, protocolos SPA y fotodepilación.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10"></path><path d="M9 4v5l-4.5 8a2.2 2.2 0 0 0 2 3.2h11a2.2 2.2 0 0 0 2-3.2L15 9V4"></path><path d="M8 14h8"></path></svg>
+            </div>
+            <h3>Estética corporal y masaje</h3>
+            <p>Exfoliaciones, envolturas, drenaje linfático y quiromasaje terapéutico.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5c3 0 6 3 6 6 0 4-2 8-2 8"></path><path d="M17 5c-3 0-6 3-6 6 0 4 2 8 2 8"></path><path d="M8 18h8"></path></svg>
+            </div>
+            <h3>Peluquería y depilación</h3>
+            <p>Cortes, coloración, depilación profesional con cera y diseño de imagen.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13c1.2-1.3 3.1-2.1 5-2.1s3.8.8 5 2.1"></path><path d="M8.5 7.5 10 10"></path><path d="m15.5 7.5-1.5 2.5"></path><path d="M6 17.5c1.8 1.6 3.8 2.5 6 2.5s4.2-.9 6-2.5"></path></svg>
+            </div>
+            <h3>Micropigmentación y uñas esculpidas</h3>
+            <p>Micropigmentación de cejas y belleza de manos con técnicas decorativas avanzadas.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="experiencia" aria-labelledby="experiencia-title">
+        <div class="section__intro">
+          <span class="section__label">Experiencia</span>
+          <h2 class="section__title" id="experiencia-title">Gestión integral y experiencia en múltiples disciplinas estéticas</h2>
+        </div>
+        <div class="experience__timeline">
+          <article class="timeline-item">
+            <div class="timeline-item__header">
+              <h3>Esteticista, peluquera y quiromasajista autónoma</h3>
+              <span class="timeline-item__company">Gabinete propio – Tomares, Sevilla</span>
+              <span class="timeline-item__date">2019 - Actualidad</span>
+            </div>
+            <p>Gestión completa del negocio: agenda, clientes, proveedores y compras. Desarrollo y fidelización de cartera de clientes. Ejecución de tratamientos estéticos, micropigmentación, masajes y peluquería. Control económico e optimización de recursos.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-item__header">
+              <h3>Asesora de moda y estilo</h3>
+              <span class="timeline-item__company">Pico 8: Lolita – Tomares</span>
+              <span class="timeline-item__date">2017 - 2019</span>
+            </div>
+            <p>Asesoramiento personalizado, dinamización comercial y ventas. Consultoría de imagen y estilo a clientela regular.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-item__header">
+              <h3>Esteticista, peluquera y masajista</h3>
+              <span class="timeline-item__company">Múltiples centros (Garbo, Ni uno +, Hospital San Juan de Dios, Baños Árabes)</span>
+              <span class="timeline-item__date">2012 - 2016</span>
+            </div>
+            <p>Experiencia en estética facial y corporal, peluquería, quiromasaje terapéutico y depilación profesional en entornos de alto ritmo.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="portfolio" aria-labelledby="portfolio-title">
+        <div class="section__intro">
+          <span class="section__label">Portfolio</span>
+          <h2 class="section__title" id="portfolio-title">Resultados, ambiente y cuidado del detalle</h2>
+          <p class="section__text">Galeria editable con imagenes de trabajos, cabina, manicuras o resultados de tratamientos. Al pulsar, la imagen se amplia.</p>
+        </div>
+        <div class="portfolio-grid">
+          <!-- // EDITAR: sustituir los src por imagenes reales del portfolio -->
+          <button class="portfolio-card" type="button" data-lightbox-src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=80" data-caption="Cabina preparada con imagen cuidada">
+            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80" alt="Cabina de estetica preparada para tratamiento">
+          </button>
+          <button class="portfolio-card" type="button" data-lightbox-src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1200&q=80" data-caption="Tratamiento facial con enfoque relajante">
+            <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=900&q=80" alt="Sesion de tratamiento facial en centro de estetica">
+          </button>
+          <button class="portfolio-card" type="button" data-lightbox-src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=80" data-caption="Manicura pulida y acabados limpios">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80" alt="Detalle de manicura semipermanente">
+          </button>
+          <button class="portfolio-card" type="button" data-lightbox-src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80" data-caption="Imagen profesional orientada a confianza">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80" alt="Esteticista sonriendo en un entorno profesional">
+          </button>
+          <button class="portfolio-card" type="button" data-lightbox-src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?auto=format&fit=crop&w=1200&q=80" data-caption="Productos y preparacion de protocolo">
+            <img src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?auto=format&fit=crop&w=900&q=80" alt="Productos cosmeticos sobre una camilla de estetica">
+          </button>
+          <button class="portfolio-card" type="button" data-lightbox-src="https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=1200&q=80" data-caption="Detalle de manos y precision tecnica">
+            <img src="https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=900&q=80" alt="Detalle de trabajo estetico en manos">
+          </button>
+        </div>
+      </section>
+
+      <section class="section reveal" id="formacion" aria-labelledby="formacion-title">
+        <div class="section__intro">
+          <span class="section__label">Formación</span>
+          <h2 class="section__title" id="formacion-title">Base técnica sólida en múltiples especialidades</h2>
+        </div>
+        <div class="education-list">
+          <article class="education-item">
+            <div>
+              <div class="education-item__title">Titulación superior en Peluquería, Estética, Quiromasaje, Tatuaje y Micropigmentación</div>
+              <div class="education-item__center">Academia Diprofem</div>
+            </div>
+            <div class="education-item__year">2010</div>
+          </article>
+          <article class="education-item">
+            <div>
+              <div class="education-item__title">Protocolos y terapias SPA</div>
+              <div class="education-item__center">Academia Diprofem</div>
+            </div>
+            <div class="education-item__year">2010</div>
+          </article>
+          <article class="education-item">
+            <div>
+              <div class="education-item__title">Blanqueamiento dental y fotodepilación</div>
+              <div class="education-item__center">Ni uno + (Sevilla)</div>
+            </div>
+            <div class="education-item__year">2012</div>
+          </article>
+          <article class="education-item">
+            <div>
+              <div class="education-item__title">Especialización en uñas esculpidas y decoración</div>
+              <div class="education-item__center">Academia Diprofem</div>
+            </div>
+            <div class="education-item__year">2016</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="contacto" aria-labelledby="contacto-title">
+        <div class="contact-card">
+          <div class="section__intro">
+            <span class="section__label">Contacto</span>
+            <h2 class="section__title" id="contacto-title">Disponible para incorporación inmediata</h2>
+            <p class="section__text">Ponte en contacto directamente. Disponible para entrevistas, pruebas prácticas y colaboraciones.</p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-item">
+              <span>Nombre</span>
+              <strong>María Romero Jiménez</strong>
+            </div>
+            <div class="contact-item">
+              <span>Email</span>
+              <a href="mailto:marianiunomas@gmail.com">marianiunomas@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <span>Telefono</span>
+              <a href="tel:+34644429910">+34 644 42 99 10</a>
+            </div>
+            <div class="contact-item">
+              <span>Ubicacion</span>
+              <strong>Sevilla, España</strong>
+            </div>
+          </div>
+          <div class="contact-actions">
+            <a class="button button--primary" href="mailto:marianiunomas@gmail.com?subject=Propuesta%20profesional&body=Hola%20Mar%C3%ADa,%20hemos%20visto%20tu%20perfil%20y%20nos%20gustar%C3%ADa%20hablar%20contigo.">Enviar email</a>
+            <a class="button button--secondary" href="http://wa.me/34644429910" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Web profesional para candidatura en centros de estetica y salones de belleza.</p>
+    </footer>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
+      <button class="lightbox__close" type="button" aria-label="Cerrar imagen ampliada">x</button>
+      <img class="lightbox__image" src="" alt="">
+      <p class="lightbox__caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    // EDITAR: selector para los elementos que aparecen con animacion
+    const revealElements = document.querySelectorAll('.reveal');
+    const portfolioButtons = document.querySelectorAll('.portfolio-card');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = lightbox.querySelector('.lightbox__image');
+    const lightboxCaption = lightbox.querySelector('.lightbox__caption');
+    const lightboxClose = lightbox.querySelector('.lightbox__close');
+    let lastFocusedElement = null;
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    revealElements.forEach((element) => revealObserver.observe(element));
+
+    function openLightbox(button) {
+      lastFocusedElement = button;
+      const imageSrc = button.dataset.lightboxSrc;
+      const caption = button.dataset.caption || '';
+      const imageAlt = button.querySelector('img')?.alt || caption;
+
+      lightboxImage.src = imageSrc;
+      lightboxImage.alt = imageAlt;
+      lightboxCaption.textContent = caption;
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lightboxClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+      lightboxImage.alt = '';
+      document.body.style.overflow = '';
+
+      if (lastFocusedElement) {
+        lastFocusedElement.focus();
+      }
+    }
+
+    portfolioButtons.forEach((button) => {
+      button.addEventListener('click', () => openLightbox(button));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
